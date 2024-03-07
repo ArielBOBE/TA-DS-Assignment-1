@@ -1,0 +1,64 @@
+import java.util.Stack;
+
+public class Main {
+	
+	public static boolean isPalindrome(String input) {
+		Stack<Character> stack = new Stack<>();
+  
+			if (input.length()%2 == 0) {
+				// first dividing the input into two segments
+				String seg1 = input.substring(0, input.length()/2);
+				
+				String seg2 = input.substring(input.length()/2, input.length());
+				
+				// iterating through the first segment and pushing to stack
+				for(char c:seg1.toCharArray()) {
+					stack.push(c);
+				}
+				
+				/* iterating through the second segment
+				 * since stack is a FILO data structure, the top of the stack is equal to recent char of seg2
+				 * if palindrome, above is true; otherwise return false
+				 */ 				
+				for (char c:seg2.toCharArray()) {
+					if (stack.peek() == c) {
+						stack.pop();
+						}
+					else {
+						return false;
+					}
+				}
+				
+			}
+        else {
+				String seg1 = input.substring(0, input.length()/2);
+				
+				String seg2 = input.substring((input.length()/2) + 1, input.length());
+				
+				for(char c:seg1.toCharArray()) {
+					stack.push(c);
+				}
+				
+				for (char c:seg2.toCharArray()) {
+					if (stack.peek() == c) {
+						stack.pop();
+						}
+					else {
+						return false;
+					}
+				}
+				
+			}
+			return true;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String input = "racecar";
+		
+		input = input.toLowerCase();
+		
+		System.out.println(isPalindrome(input));
+	}
+
+}
