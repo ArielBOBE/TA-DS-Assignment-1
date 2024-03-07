@@ -1,0 +1,136 @@
+class Stack {
+	int size = 0;
+	private int capacity = 10;
+	private char[] array;
+	private char[] newArray;
+	
+	Stack() {
+		this.array = new char[capacity];
+	}
+	
+	public void push(char data) {
+		if (size == capacity) {
+			grow();
+		}
+		this.array[size] = data;
+		size++;
+	}
+	
+	public void pop() {
+		this.array[size-1] = ' ';
+		this.size--;
+	}
+	
+	public char peek() {
+		return this.array[this.size-1];
+	}
+	
+	public void grow() {
+		this.newArray = new char[this.capacity * 2];
+		for (int i = 0; i < capacity; i++) {
+			this.newArray[i] = this.array[i];
+		}
+		
+		this.array = this.newArray;
+	}
+	
+	public boolean isEmpty() {
+		if (this.size == 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public String toString() {
+		String string = "";
+		for (char c:this.array) {
+			string = string+String.valueOf(c)+", ";
+		}
+		
+		string = "["+string.substring(0, string.length()-2)+"]";
+		
+		return string;
+	}
+}
+
+public class Main {
+	
+	public static boolean isPalindrome(String input) {
+		Stack stack = new Stack();
+		System.out.println("Stack empty?: "+stack.isEmpty());
+			
+			if (input.length()%2 == 0) {
+				// first dividing the input into two segments
+				String seg1 = input.substring(0, input.length()/2);
+				
+				String seg2 = input.substring(input.length()/2, input.length());
+				
+				// iterating through the first segment and pushing to stack
+				for(char c:seg1.toCharArray()) {
+					stack.push(c);
+					
+					// displaying stack
+					System.out.println("Size: "+stack.size);
+					System.out.println(stack);
+				}
+				
+				/* iterating through the second segment
+				 * since stack is a FILO data structure, the top of the stack is equal to recent char of seg2
+				 * if palindrome above is true, otherwise return false
+				*/ 				
+				for (char c:seg2.toCharArray()) {
+					if (stack.peek() == c) {
+						stack.pop();
+						
+						// displaying stack
+						System.out.println("Size: "+stack.size);
+						System.out.println(stack);
+						}
+					else {
+						return false;
+					}
+				}
+				
+			}else {
+				// first dividing the input into two segments
+				String seg1 = input.substring(0, input.length()/2);
+				
+				String seg2 = input.substring((input.length()/2) + 1, input.length());
+				
+				for(char c:seg1.toCharArray()) {
+					stack.push(c);
+					
+					// displaying stack
+					System.out.println("Size: "+stack.size);
+					System.out.println(stack);
+				}
+				
+				for (char c:seg2.toCharArray()) {
+					if (stack.peek() == c) {
+						stack.pop();
+						System.out.println("Size: "+stack.size);
+						System.out.println(stack);
+						}
+					else {
+						return false;
+					}
+				}
+				
+			}
+			return true;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String input = "racecar";
+		
+		input = input.toLowerCase();
+		
+		System.out.println(isPalindrome(input));
+	}
+
+}
+
+
+
+
