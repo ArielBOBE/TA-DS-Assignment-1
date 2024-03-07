@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Stack {
 	int size = 0;
 	private int capacity = 10;
@@ -121,8 +123,10 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String input = "racecar";
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("Enter a word: ")
+		String input = scanner.nextLine();
 		
 		input = input.toLowerCase();
 		
