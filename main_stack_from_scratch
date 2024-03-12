@@ -25,7 +25,10 @@ class Stack {
 		this.array[size-1] = 0;
 		this.size--;
 
-		return this.array[size-1]
+		if (this.size == 0) {
+			return 0;
+		}
+		return this.array[size-1];
 	}
 	
 	public char peek() {
