@@ -22,7 +22,7 @@ class Stack {
 		if (size <= capacity/2) {
 			shrink();
 		}
-		this.array[size-1] = ' ';
+		this.array[size-1] = 0;
 		this.size--;
 	}
 	
