@@ -54,6 +54,17 @@ class Stack {
 		}
 		return false;
 	}
+
+	public int search(char item) {
+		int index = 0;
+		for (char c:this.array) {
+			index++;
+			if (c == item) {
+				return index;
+			}
+		}
+		return - 1;
+	}
 	
 	public String toString() {
 		String string = "";
