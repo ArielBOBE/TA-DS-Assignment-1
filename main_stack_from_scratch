@@ -18,12 +18,14 @@ class Stack {
 		size++;
 	}
 	
-	public void pop() {
+	public int pop() {
 		if (size <= capacity/2) {
 			shrink();
 		}
 		this.array[size-1] = 0;
 		this.size--;
+
+		return this.array[size-1]
 	}
 	
 	public char peek() {
